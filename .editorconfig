@@ -1,0 +1,9 @@
+root = True
+
+[*]
+encoding = utf-8
+end_of_line = lf
+
+[Makefile,*.asm]
+indent_style = tab
+indent_size = 4
