@@ -7,6 +7,7 @@ NASM and Python are required to build the various programs, whose list is the fo
 - _helloworld.asm_: prints "Hello, world!" on the second line of the display.
 - _helloserial.asm_: prints "Hello, serial port world!" through the main RS-232C port.
 - _soundtest.asm_: blasts a 440Hz square tone on the PC-98 speaker, or your headphone. A reset is needed to stop it.
+- _biosdump.asm_: dumps the PC-9801 over the serial port, using the XMODEM protocol. Start this program before starting the XMODEM reciever.
 
 Just run `make` to build everything.
 

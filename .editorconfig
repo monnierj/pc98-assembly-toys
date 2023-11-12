@@ -3,6 +3,7 @@ root = True
 [*]
 encoding = utf-8
 end_of_line = lf
+trim_trailing_whitespace = true
 
 [Makefile,*.asm]
 indent_style = tab

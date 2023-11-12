@@ -4,7 +4,7 @@ BASIC_WRAP=python3 wrap.py
 
 .PHONY: clean
 
-all: helloworld.bas helloserial.bas soundtest.bas
+all: biosdump.bas helloworld.bas helloserial.bas soundtest.bas
 
 clean:
 	$(RM) -fv *.bin *.lst *.bas
