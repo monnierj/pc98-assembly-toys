@@ -40,7 +40,7 @@ main:
 	out UART_CMD_PORT, al
 	call wait_some
 
-	; And reset the possible errors flags, while enabling the reciever and transmitter
+	; And reset the possible errors flags, while enabling the receiver and transmitter
 	mov al, 0x15
 	out UART_CMD_PORT, al
 	call wait_some
@@ -117,7 +117,7 @@ _next_frame:
 	; Read and discard what we recieved
 	call uart_read
 
-	; Send the final EOT. The reciever will consider transfer as done.
+	; Send the final EOT. The receiver will consider transfer as done.
 	mov al, EOT
 	call uart_write
 
