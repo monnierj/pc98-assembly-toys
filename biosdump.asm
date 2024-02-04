@@ -4,6 +4,7 @@
 
 UART_DATA_PORT: equ 0x30
 UART_CMD_PORT: equ 0x32
+TIMER_CHANNEL2_PORT: equ 0x75
 
 ; PC-98 BIOS size, in kB.
 BIOS_SIZE: equ 96
@@ -20,6 +21,7 @@ main:
 	push ax
 	push ds
 
+_uart_reset:
 	; Perform a full reset of the UART, as explained in the datasheet
 	xor al, al
 
@@ -35,8 +37,14 @@ main:
 	out UART_CMD_PORT, al
 	call wait_some
 
-	; We're finally in the MODE state. Set up asynchronous mode.
-	mov al, 0x4F	; 1 stop bit, no parity, 8 bits of data, baud rate factor x64
+	; The UART is now de-configured. We can change its baud rate by tweaking system timer channel #2
+	mov al, 16	; Use the value that matches 10MHz system clock and provides 9600bps on the UART
+	out TIMER_CHANNEL2_PORT, al
+	xor al, al
+	out TIMER_CHANNEL2_PORT, al
+
+	; The UART is in MODE state. Set up asynchronous mode.
+	mov al, 0x4E	; 1 stop bit, no parity, 8 bits of data, baud rate factor x16
 	out UART_CMD_PORT, al
 	call wait_some
 
